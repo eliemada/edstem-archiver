@@ -8,17 +8,35 @@
   "commitMessagePrefix": "⬆️",
   "packageRules": [
     {
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "💥",
+      "labels": ["dependencies", "major"]
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "commitMessagePrefix": "✨",
+      "labels": ["dependencies", "minor"]
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "commitMessagePrefix": "🐛",
+      "labels": ["dependencies", "patch"]
+    },
+    {
       "matchUpdateTypes": ["pin", "digest"],
-      "commitMessagePrefix": "📌"
+      "commitMessagePrefix": "📌",
+      "labels": ["dependencies", "pin"]
     },
     {
       "matchUpdateTypes": ["lockFileMaintenance"],
-      "commitMessagePrefix": "🔒"
+      "commitMessagePrefix": "🔒",
+      "labels": ["dependencies", "lockfile"]
     },
     {
-      "description": "Group GitHub Actions updates",
-      "groupName": "github-actions",
-      "matchManagers": ["github-actions"]
+      "matchManagers": ["github-actions"],
+      "commitMessagePrefix": "👷",
+      "labels": ["dependencies", "ci"],
+      "groupName": "github-actions"
     },
     {
       "description": "Group minor/patch Python deps",
