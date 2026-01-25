@@ -1,0 +1,55 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":maintainLockFilesWeekly"
+  ],
+  "labels": ["dependencies"],
+  "commitMessagePrefix": "⬆️",
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}{{/if}}",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "💥",
+      "labels": ["dependencies", "major"]
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "commitMessagePrefix": "✨",
+      "labels": ["dependencies", "minor"]
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "commitMessagePrefix": "🐛",
+      "labels": ["dependencies", "patch"]
+    },
+    {
+      "matchUpdateTypes": ["pin", "digest"],
+      "commitMessagePrefix": "📌",
+      "labels": ["dependencies", "pin"]
+    },
+    {
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "commitMessagePrefix": "🔒",
+      "labels": ["dependencies", "lockfile"]
+    },
+    {
+      "matchDepTypes": ["action"],
+      "commitMessagePrefix": "👷",
+      "labels": ["dependencies", "ci"]
+    },
+    {
+      "description": "Group GitHub Actions updates",
+      "groupName": "github-actions",
+      "matchManagers": ["github-actions"]
+    },
+    {
+      "description": "Group Python dependencies",
+      "groupName": "python-deps",
+      "matchManagers": ["pip_requirements", "pep621"],
+      "matchUpdateTypes": ["minor", "patch"]
+    }
+  ]
+}
